@@ -1,0 +1,30 @@
+[
+    {
+        "name" : "mobile",
+        "img" : "https://sathya.in/media/86543/catalog/oppo%20a77%202.jpg",
+        "price" : "20000",
+        "desc" : "good product!",
+        "quantity" : "2"
+    },
+    {
+        "name" : "Purse",
+        "img" : "https://m.media-amazon.com/images/I/71K2DBFeGHL._AC_UY1000_.jpg",
+        "price" : "5000",
+        "desc" : "nice product!",
+        "quantity" : "3"
+    },
+    {
+        "name" : "laptop",
+        "img" : "https://m.media-amazon.com/images/I/81W33YnXpBL._AC_UF1000,1000_QL80_.jpg",
+        "price" : "45000",
+        "desc" : "best in the market!",
+        "quantity" : "4"
+    },
+    {
+        "name" : "Watch",
+        "img" : "https://m.media-amazon.com/images/I/81nC4u9eYfL._AC_UY1000_.jpg",
+        "price" : "1100",
+        "desc" : "amazing user experience!",
+        "quantity" : "1"
+    }
+]

@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Bhavdeep",
+        "age": "19",
+        "gender": "male",
+        "address": "Rajpura",
+        "company": "Zenmonk"
+    },
+    {
+        "name": "Mohdeep",
+        "age": "29",
+        "gender": "male",
+        "address": "America",
+        "company": "Google"
+    },
+    {
+        "name": "Sahil",
+        "age": "21",
+        "gender": "male",
+        "address": "Pune",
+        "company": "LG"
+    }
+]
