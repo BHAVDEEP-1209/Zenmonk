@@ -5,7 +5,6 @@ import PlayList from '../components/PlayList'
 import AudioPlayer from '../components/AudioPlayer'
 
 const HomePage = () => {
-  const [music,setMusic] = useState("sidhu.mp3");
   const [playSong, setPlaySong] = useState(false);
   const [currentSong,setCurrentSong] = useState(0);
 
@@ -15,8 +14,8 @@ const HomePage = () => {
     <div className="homepage_div">
     <Navbar />
     <Hero />
-    <PlayList state={{music,setMusic,setPlaySong,currentSong,setCurrentSong}}/>
-    <AudioPlayer state={{music,setMusic,playSong,setPlaySong,setCurrentSong,currentSong}}/>
+    <PlayList state={{setPlaySong,currentSong,setCurrentSong}}/>
+    <AudioPlayer state={{playSong,setPlaySong,setCurrentSong,currentSong}}/>
     </div>
     </>
   )

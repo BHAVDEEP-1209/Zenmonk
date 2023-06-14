@@ -1,27 +1,31 @@
 [
     {
         "id" : 0,
-        "name" : "sidhu.mp3",
+        "path" : "https://pwdown.info/113543/Signed%20to%20God%20-%20Sidhu%20Moose%20Wala.mp3",
         "artist" : "Sidhu Mossewala",
-        "album" : "MooseTape"
+        "album" : "MooseTape",
+        "name" : "Signed To God"    
     },
     {
         "id" : 1,
-        "name" : "diljit.mp3",
+        "path" : "https://pwdown.info/113605/Peaches%20-%20Diljit%20Dosanjh.mp3",
         "artist" : "Diljit",
-        "album" : "Rock Hits"
+        "album" : "Rock Hits",
+        "name" : "Peaches"
     },
     {
         "id" : 2,
-        "name" : "karan.mp3",
+        "path" : "https://pwdown.info/113605/On%20Top%20-%20Karan%20Aujla.mp3",
         "artist" : "Karan Aujhla",
-        "album" : "Desi Beats"
+        "album" : "Desi Beats",
+        "name" : "On Top"
     },
     {
         "id" : 3,
-        "name" : "starboy.mp3",
-        "artist" : "Weekend",
-        "album" : "All Time classic"
+        "path" : "https://www.pagalworld.com.se/files/download/id/6769",
+        "artist" : "Jordan Sandhu",
+        "album" : "All Time classic",
+        "name" : "Classic Sandhu"
     }
 
 ]

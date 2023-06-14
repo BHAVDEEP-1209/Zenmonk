@@ -203,3 +203,42 @@ body{
     position: relative;
     right: 30px;
 }
+
+.gif{
+    display: block;
+    width: 100%;
+    height: 30px;
+    object-fit: cover;
+    object-position: center center;
+    // border: 2px solid black;
+}
+
+.footer{
+    // border: 2px solid black;
+    width: 750px;
+    margin: 16px auto;
+    text-align: left;
+    background-color: #F7F7F7;
+    padding: 12px 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer h4 , .footer p{
+    display: inline-block;
+
+}
+
+.footer p{
+    margin-right: 20px;
+    font-family: 'Jost', sans-serif;
+    font-size: 18px;
+}
+
+.footer h4{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 20px;
+}

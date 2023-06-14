@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
+import data from  "../Data/Data.json"
+
 
 const Hero = () => {
     const [date,setDate] = useState(new Date());
@@ -6,7 +8,7 @@ const Hero = () => {
     <>
     <div className="hero_div">
         <h1>Trending!..</h1>
-        <div className="card">
+          <div className="card">
             <p>Artist</p>
             <h1>On Top Of The World</h1>
             <div className="card_bottom">
@@ -14,6 +16,7 @@ const Hero = () => {
                 <h4>{date.toLocaleDateString()}</h4>
             </div>
         </div>
+        
     </div>
     </>
   )
