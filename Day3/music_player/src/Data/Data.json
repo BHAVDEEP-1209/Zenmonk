@@ -1,0 +1,27 @@
+[
+    {
+        "id" : 0,
+        "name" : "sidhu.mp3",
+        "artist" : "Sidhu Mossewala",
+        "album" : "MooseTape"
+    },
+    {
+        "id" : 1,
+        "name" : "diljit.mp3",
+        "artist" : "Diljit",
+        "album" : "Rock Hits"
+    },
+    {
+        "id" : 2,
+        "name" : "karan.mp3",
+        "artist" : "Karan Aujhla",
+        "album" : "Desi Beats"
+    },
+    {
+        "id" : 3,
+        "name" : "starboy.mp3",
+        "artist" : "Weekend",
+        "album" : "All Time classic"
+    }
+
+]
