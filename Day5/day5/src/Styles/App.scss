@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Alkatra&family=IBM+Plex+Mono&family=Jost&family=Lato&family=Signika&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+//google fonts
+// font-family: 'IBM Plex Mono', monospace;
+// font-family: 'Jost', sans-serif;
+// font-family: 'Lato', sans-serif;
+// font-family: 'Signika', sans-serif;
+/////////////////////////////////
+
+body{
+    font-size: 40px;
+    background-color: #99DBF5 !important;
+    // background-color: red;
+}
+
+//login page styling
+/////////////////
+
+
+.login_div{
+    display: flex;
+    width: 1100px;
+    max-height: 678px;
+    margin: 8% auto;
+    box-shadow: 0 10px 15px -5px rgba(0,0,0,0.4);
+    border-radius: 20px;
+    
+}
+
+.login_div .img_div{
+    height: 670px;
+    width: 500px;
+}
+
+.img_div img{
+    height: 100%;
+    width: 500px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+
+/////////////////////////
+// login details page styling
+
+.details_div{
+    // padding: 120px 100px; 
+    padding: 50px 100px; 
+    background-color: #ffffff;
+    width: 600px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    // font-family: 'Signika', sans-serif;
+    font-family: 'Lato', sans-serif;
+    color: rgb(12, 112, 201);
+}
+
+.details_div h1{
+    margin-bottom: 50px;
+}
+
+.login_form{
+    padding: 0 !important;
+    // border: 2px solid black;
+    position: relative;
+    right: 50px;
+}
+
+.design{
+    position: absolute;
+    z-index: -1;
+    top: 350px;
+    left: 1250px;
+    width: 900px;
+    height: 900px;
+}
+
+.design2{
+    position: absolute;
+    z-index: -1;
+    top: -180px;
+    width: 800px;
+    height: 800px;
+    left: -80px;
+}
+
+
+//////////////////////////
+
+/// sing up page styling 
+
+.signup_div{
+    display: flex;
+    width: 1100px;
+    max-height: 678px;
+    margin: 8% auto;
+    box-shadow: 0 10px 15px -5px rgba(0,0,0,0.4);
+    border-radius: 20px;
+}
+
+
+// signup details div
+
+.signup-details_div{
+    padding: 50px 100px; 
+    background-color: #ffffff;
+    width: 600px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    // font-family: 'Signika', sans-serif;
+    font-family: 'Lato', sans-serif;
+    color: rgb(12, 112, 201);
+}
+
+
+
+//profile page styling
+
+
+.profile_div{
+    display: flex;
+    width: 1100px;
+    // max-height: 678px;
+    height: 950px;
+    margin: 4% auto;
+    box-shadow: 0 10px 15px -5px rgba(0,0,0,0.4);
+    border-radius: 20px;
+    background-color: white;
+    border-color: 2px solid red !important;
+}
+
+.cartoon_div{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    
+}
+
+.cartoon_div img{
+    height: 90%;
+    position: relative;
+    right: 90px;
+}
+
+
+//profile page details div styling
+
+.profile_details_div{
+    width: 60%;
+    height: 100%;
+    padding: 80px 20px 80px 150px;
+}
+
+.profile_details_div h1{
+    margin-top: 20px;
+    margin-bottom: 0 !important;
+}
+
+.avatar_section{
+    margin-top: 70px;
+    margin-bottom: 40px;
+    // border: 2px solid red;
+}
+
+.avatar_section Button{
+    margin-left: 30px;
+}
+
+
+.profile_info_input{
+    width: 75%;
+    margin-left: 20px;
+}
+
+.profile_details{
+    // border: 2px solid black;
+    width: 490px;
+    height: 644px;
+    margin-left: -50px;
+    padding-left: 50px;
+    background-color: #EEEEEE;
+    padding-top: 25px;
+}
+
+
+.profile_footer{
+    display: flex;
+    align-items: center;
+}
+.profile_footer *{
+    margin-right: 20px;
+}
+
+.profile_details_div h1{
+    font-family: 'Jost', sans-serif !important;
+    letter-spacing: 2px;
+    // color: rgb(12, 112, 201);
+    color: #ffffff;
+}
+
+.header{
+    background-color: #1ea7dd;
+    width: 900px;
+    z-index: -2;
+    color: white;
+    padding: 12px 30px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-left: -50px;
+}
+
+.name{
+    font-family: 'Alkatra', cursive;
+    color: #ffffff;
+}
+
+.avatar{
+    border: 2px solid red;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+}
+.avatar img{
+    width: 140%;
+    height: 100%;
+}
+
+
