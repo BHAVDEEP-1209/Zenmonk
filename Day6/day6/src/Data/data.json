@@ -1,0 +1,33 @@
+[
+    {
+        "id" :0,
+        "name" : "Bhavdeep",
+        "img" : "https://flxt.tmsimg.com/assets/33623_v9_bd.jpg",
+        "userTask" : 0
+    },
+    {
+        "id" :1,
+        "name" : "Deepak",
+        "img" : "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSZG4xRtQTawU7GQ75VQ9Fv0gUgU7PnGutWGFYTPEJWAWEJYlJh_rkEGhkKcqGkdfzXmWhO9tVMTl5r6aQ",
+        "userTask" : 0
+    },
+    {
+        "id" :2,
+        "name" : "Yash",
+        "img" : "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
+        "userTask" : 0
+    },
+    {
+        "id" :3,
+        "name" : "Satyam",
+        "img" : "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRD6T83PeNAkCcAnKJKunvl-0aBAmFlb82K8wbcBeXMUWeDIQzsgslxJ3BsgZ3G42rQX7HGn-DEXShar9Q",
+        "userTask" : 0
+    },
+    {
+        "id" :4,
+        "name" : "Prithvi",
+        "img" : "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQh0qFKPItQegom_NQJn4b8wWqffImJAET-OEaJEBF_u4g71FKmKeQ0nmbwdEbuyq-iLD21ZJsNxLiV-rc",
+        "userTask" : 0
+    }
+
+]
