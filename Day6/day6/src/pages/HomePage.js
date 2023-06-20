@@ -5,6 +5,7 @@ import { Input } from "antd";
 import DateComponent from "../components/DateComponent";
 import { update } from "../slices/AssignedTasks";
 import { increment } from "../slices/TaskSlice";
+import { updateCount } from "../slices/countSlice";
 import ListComponent from "../components/ListComponent";
 
 const HomePage = () => {
