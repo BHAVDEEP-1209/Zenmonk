@@ -1,0 +1,9 @@
+{
+    "accounts" : [
+        {"id" : 1, "amount" : 100 , "name" : "Bhavdeep" , "points" : 1},
+        {"id" : 2, "amount" : 200 , "name" : "Satyam" , "points" : 2},
+        {"id" : 3, "amount" : 300 , "name" : "Deepak" , "points" : 3},
+        {"id" : 4, "amount" : 400 , "name" : "Yash" , "points" : 4},
+        {"id" : 5, "amount" : 500 , "name" : "Prithvi" , "points" : 1}
+    ]
+}
