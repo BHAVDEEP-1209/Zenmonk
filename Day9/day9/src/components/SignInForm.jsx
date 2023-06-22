@@ -1,0 +1,128 @@
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import google from "../assets/google.svg";
+import {Link, useNavigate} from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+
+// TODO remove, this demo shouldn't need to reset the theme.
+const defaultTheme = createTheme();
+
+export default function SignInForm() {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+    const [number,setNumber] = useState("");
+
+// initializing form values in sing in from
+const intialValues = {email : "", password : ""};
+const [formValues,setFormValues] = React.useState(intialValues);
+
+// updating the values in the input filed or formValues on typing
+const handleChange=(event)=>{
+    const {name,value} = event.target;
+    setFormValues((prev)=>{
+        return {
+            ...prev,
+            [name] : value
+        }
+    })
+}
+
+// validation
+const [formErrors,setFormErrors] = React.useState({});
+const [isSubmit, setIsSubmit] = React.useState(false);
+
+
+const validate=(values)=>{
+    const errors = {};
+        if(!values.number){
+            errors.number = "Phone Number required!"
+        }  
+    return errors;
+}
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setFormErrors(validate(formValues));
+    setIsSubmit(true);
+  };
+
+  React.useEffect(()=>{
+    if(Object.keys(formErrors).length===0 && isSubmit){
+        localStorage.setItem('loggedUser',JSON.stringify(formValues.email));
+        navigate("/homepage")
+    }
+  },[formErrors])
+
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+
+            {/* header section  */}
+            <div className="header">
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Hello Again!
+          </Typography>
+        </div>
+        <Typography component="p" variant="p" className='header_info'>
+            Enter credentails to Login In!
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="number"
+              label="Phone Number"
+              name="number"
+              autoComplete="email"
+              autoFocus
+              value={number}
+              onChange={(e)=>{setNumber(e.target.value) }}
+            />
+            <p className='error'>{formErrors.number}</p>
+          
+           
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2,bgcolor: '#916BBF' }}
+            >
+              Sign In
+            </Button>
+
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
+}
