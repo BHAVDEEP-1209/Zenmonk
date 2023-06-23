@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -10,9 +9,15 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import {setResumeValue} from "../slices/resumeSlice"
-import { Link , useNavigate, useParams} from 'react-router-dom';
+import { useNavigate,} from 'react-router-dom';
 import BasicModal from '../components/BasicModal';
-import { useLocation } from 'react-router-dom';
+import TemplateRadio from '../components/TemplateRadio';
+import Template2 from '../components/Template2';
+import Template3 from '../components/Template3';
+import {EnterOutlined }from '@ant-design/icons';
+import tempscreen1 from "../assets/temp1.png"
+import tempscreen2 from "../assets/temp2.png"
+import tempscreen3 from "../assets//temp3.png"
 
 
 const defaultTheme = createTheme();
@@ -21,14 +26,22 @@ export default function ResumeForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const number = useSelector(state=>state.reducer.user.user.number);
+  const [isSubmit,setIsSubmit] = React.useState(false);
+  const [formErrors,setFormErrors] = React.useState({});
 
   // intializing form values
-  const initialValues = {fName : "", lName : "", email : "", password : "" ,skills : "" , img : "", graduation : "" , school : "" , job : "", employer : "" , job_desc : "", createdBy : number, address : "" }
+  const initialValues = {fName : "", lName : "", email : "" ,skills : "" , img : "", graduation : "" , school : "" , job : "", employer : "" , job_desc : "", createdBy : number, address : "" , template : "template1"}
   const [formValues,setFormValues] = React.useState(initialValues);
 
    // handle on change event on input values of form
    const handleChange=(event)=>{
     const {name,value} = event.target;
+    setFormErrors((prev)=>{
+      return {
+        ...prev,
+        [name] : ""
+      }
+    })
       setFormValues((prev)=>{
         return {
           ...prev,
@@ -37,8 +50,14 @@ export default function ResumeForm() {
       })
    }
 
- 
+ /// image handling
    const handleFileChange=(e)=>{
+    setFormErrors((prev)=>{
+      return {
+        ...prev,
+        img : ""
+      }
+    })
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -52,43 +71,101 @@ export default function ResumeForm() {
     }
 }
 
-
+  // on create Resume
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(setResumeValue(formValues));
-    window.alert("Resume Created!")
-    navigate("/homepage");
+    setFormErrors(validate(formValues));
+    setIsSubmit(true);  
+    
   };
+
+  React.useEffect(()=>{
+    console.log(formErrors);
+    if(Object.keys(formErrors).length===0 && isSubmit){
+      dispatch(setResumeValue(formValues));
+      navigate("/homepage");
+    }
+  },[formErrors])
+
+
+  //validation
+  
+
+  const validate=(values)=>{
+    const errors = {};
+    const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    
+    if(!values.fName){
+      errors.fName = "First Name required!";
+    }
+    if(!values.lName){
+      errors.lName = "Last Name required!";
+    }
+    if(!values.email){
+      errors.email = "Email required!";
+    }else if(!regex.test(values.email)){
+      errors.email = "Invalid Email Address!"
+    }
+    if(!values.address){
+      errors.address = "Address required!";
+    }
+    if(!values.img){
+      errors.img = "Image required!";
+    }
+    if(!values.skills){
+      errors.skills = "Skills required!";
+    }
+    if(!values.school){
+      errors.school = "school required!";
+    }
+    if(!values.job){
+      errors.job = "job required!";
+    }
+    if(!values.graduation){
+      errors.graduation = "graduation required!";
+    }
+    if(!values.employer){
+      errors.employer = "employer required!";
+    }
+    if(!values.job_desc){
+      errors.job_desc = "Job Description required!";
+    }
+    return errors;
+    
+  }
+
+  
+
 
   // material ui form
   return (
     <>
-    <h1 style={{textAlign:'center', marginBottom : 0}}>Create Resume</h1>
+    <div className="go_back_button" onClick={()=>{navigate("/homepage")}}>
+      <EnterOutlined />
+    </div>
+
+    <img src={tempscreen1} alt="" className='tempScreenShot1'/>
+    <img src={tempscreen2} alt="" className='tempScreenShot2'/>
+    <img src={tempscreen3} alt="" className='tempScreenShot3'/>
+
     <div className="resume_main_div">
+    <h1 style={{textAlign:'center', marginBottom : 0}}>Create Resume</h1>
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
         >
 
           {/* header section  */}
-          <Avatar sx={{ m: 1, bgcolor: '#916BBF' }}>
-           
-           </Avatar>
-          <div className="header">
           
-          <Typography component="h1" variant="h5">
+          <TemplateRadio state={setFormValues}/>
+          {/* <Typography component="h1" variant="h5">
             Personal Info
-          </Typography>
-          </div>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
+          </Typography> */}
+          
+          <Box component="form" noValidate onSubmit={handleSubmit} >
+           <div className="resumeform_hero_section">
+           <Grid container spacing={2} className='div'>
               <Grid item xs={12} >
                 <TextField
                   autoComplete="given-name"
@@ -101,6 +178,7 @@ export default function ResumeForm() {
                   onChange={handleChange}
                   value={formValues.fName}
                 />
+                <p className='error'>{formErrors.fName}</p>
               </Grid>
              
               <Grid item xs={12} >
@@ -114,6 +192,7 @@ export default function ResumeForm() {
                   onChange={handleChange}
                   value={formValues.lName}
                 />
+                  <p className='error'>{formErrors.lName}</p>
               </Grid>
              
               <Grid item xs={12}>
@@ -127,6 +206,7 @@ export default function ResumeForm() {
                   onChange={handleChange}
                   value={formValues.email}
                 />
+                <p className='error'>{formErrors.email}</p>
               </Grid>
               
               <Grid item xs={12}>
@@ -140,6 +220,7 @@ export default function ResumeForm() {
                   onChange={handleChange}
                   value={formValues.address}
                 />
+                 <p className='error'>{formErrors.address}</p>
               </Grid>
              
            
@@ -150,16 +231,17 @@ export default function ResumeForm() {
               <label htmlFor="imgUpload">Upload Image!</label>
               <input type="file" name="" id="imgUpload" onChange={handleFileChange}/>
               </div>
+              <p className='error'>{formErrors.img}</p>
   
             </Grid>
 
-            <Typography component="h1" variant="h5">
+            {/* <Typography component="h1" variant="h5">
             Work Info
-          </Typography>
+          </Typography> */}
 
 
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
+    
+            <Grid container spacing={2} className='div'  >
               <Grid item xs={12} >
                 <TextField
                   autoComplete="given-name"
@@ -172,6 +254,7 @@ export default function ResumeForm() {
                   onChange={handleChange}
                   value={formValues.job}
                 />
+                <p className='error'>{formErrors.job}</p>
               </Grid>
               
               <Grid item xs={12} >
@@ -185,6 +268,7 @@ export default function ResumeForm() {
                   onChange={handleChange}
                   value={formValues.employer}
                 />
+                <p className='error'>{formErrors.employer}</p>
               </Grid>
             
               <Grid item xs={12}>
@@ -198,21 +282,23 @@ export default function ResumeForm() {
                   onChange={handleChange}
                   value={formValues.job_desc}
                 />
+                <p className='error'>{formErrors.job_desc}</p>
               </Grid>
        
             </Grid>
-            </Box>
+           </div>
+        
 
 
 
 
-            <Typography component="h1" variant="h5">
-            Skiils & Education
-          </Typography>
+            {/* <Typography component="h1" variant="h5">
+            Skills & Education
+          </Typography> */}
 
 
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
+     
+            <Grid container spacing={2} sx={{marginTop : 1}}>
               <Grid item xs={12} >
                 <TextField
                   autoComplete="given-name"
@@ -225,6 +311,7 @@ export default function ResumeForm() {
                   onChange={handleChange}
                   value={formValues.school}
                 />
+                <p className='error'>{formErrors.school}</p>
               </Grid>
            
               <Grid item xs={12} >
@@ -238,6 +325,7 @@ export default function ResumeForm() {
                   onChange={handleChange}
                   value={formValues.graduation}
                 />
+                <p className='error'>{formErrors.graduation}</p>
               </Grid>
              
               <Grid item xs={12}>
@@ -251,6 +339,7 @@ export default function ResumeForm() {
                   onChange={handleChange}
                   value={formValues.skills}
                 />
+                <p className='error'>{formErrors.skills}</p>
               </Grid>
          
             </Grid>
@@ -261,27 +350,32 @@ export default function ResumeForm() {
 
 
 
-            <Button
+            {/* <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, bgcolor: '#916BBF' }}
-            >
+            >  
               create Resume
-            </Button>
-
-          
-
-            
-
-            
-          </Box>
+            </Button> */}
+            <button onClick={handleSubmit} className='resume_create_button'>CREATE</button>
+            <button onClick={()=>{setFormValues(initialValues)}} className='resume_create_button'>Cancel resume</button>
+          {
+            formValues.template=="template1" && <BasicModal form={formValues}/>
+          }
+          {
+            formValues.template=="template2" && <Template2 form={formValues} />
+          }
+          {
+            formValues.template=="template3" && <Template3 form={formValues} />
+          }          
+     
         </Box>
         
       </Container>
     </ThemeProvider>
-    <button onClick={()=>{setFormValues(initialValues)}}>Cancel resume</button>
-    <BasicModal form={formValues}/>
+    
+    
     </div>
     </>
   );

@@ -24,47 +24,26 @@ export default function SignInForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
     const [number,setNumber] = useState("");
+    const [error,setError] = useState("");
 
 // initializing form values in sing in from
-const intialValues = {email : "", password : ""};
-const [formValues,setFormValues] = React.useState(intialValues);
 
 // updating the values in the input filed or formValues on typing
-const handleChange=(event)=>{
-    const {name,value} = event.target;
-    setFormValues((prev)=>{
-        return {
-            ...prev,
-            [name] : value
-        }
-    })
-}
 
-// validation
-const [formErrors,setFormErrors] = React.useState({});
-const [isSubmit, setIsSubmit] = React.useState(false);
-
-
-const validate=(values)=>{
-    const errors = {};
-        if(!values.number){
-            errors.number = "Phone Number required!"
-        }  
-    return errors;
-}
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
+    console.log("button clicked!")
+    if(!number){
+      setError("Phone number required!");
+    }else if(number.length!=10){
+      setError("Invalid Phn no.!");
+    }else{
+      navigate(`/otp/${number}`);
+    }
+    
   };
 
-  React.useEffect(()=>{
-    if(Object.keys(formErrors).length===0 && isSubmit){
-        localStorage.setItem('loggedUser',JSON.stringify(formValues.email));
-        navigate("/homepage")
-    }
-  },[formErrors])
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -76,6 +55,7 @@ const validate=(values)=>{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            justifyContent: 'center'
           }}
         >
 
@@ -102,9 +82,11 @@ const validate=(values)=>{
               autoComplete="email"
               autoFocus
               value={number}
-              onChange={(e)=>{setNumber(e.target.value) }}
+              onChange={(e)=>{setNumber(e.target.value)
+              setError("");
+              }}
             />
-            <p className='error'>{formErrors.number}</p>
+            <p className='error'>{error}</p>
           
            
             <FormControlLabel
@@ -115,9 +97,10 @@ const validate=(values)=>{
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2,bgcolor: '#916BBF' }}
+              sx={{ mt: 3, mb: 2,bgcolor: '#916BBF'  }}
+              onClick={handleSubmit}
             >
-              Sign In
+             Sign In
             </Button>
 
           </Box>
