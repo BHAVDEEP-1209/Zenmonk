@@ -11,7 +11,7 @@ import SignInForm from '../components/SignInForm'
 const SignIn = () => {
   return (
     <>
-    <div className="signup_div">
+    <div className="signup_div" style={{backgroundColor : "#fff"}}>
     <div className="signup_left_div">
             <div className="header">
             <img src={logo} alt="" />
@@ -22,7 +22,7 @@ const SignIn = () => {
             <img src={leaf} alt="" className='leaf_image'/>
             <img src={mobile} alt="" className='mobile_image'/>
         </div>
-        <div className="signup_right_div">
+        <div className="signup_right_div" >
           <SignInForm />
         </div></div>
        

@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import {setResumeValue} from "../slices/resumeSlice"
-import { useNavigate,} from 'react-router-dom';
+import { useNavigate, useParams,} from 'react-router-dom';
 import BasicModal from '../components/BasicModal';
 import TemplateRadio from '../components/TemplateRadio';
 import Template2 from '../components/Template2';
@@ -18,6 +18,7 @@ import {EnterOutlined }from '@ant-design/icons';
 import tempscreen1 from "../assets/temp1.png"
 import tempscreen2 from "../assets/temp2.png"
 import tempscreen3 from "../assets//temp3.png"
+import SaveOption from '../components/SaveOption';
 
 
 const defaultTheme = createTheme();
@@ -28,9 +29,12 @@ export default function ResumeForm() {
   const number = useSelector(state=>state.reducer.user.user.number);
   const [isSubmit,setIsSubmit] = React.useState(false);
   const [formErrors,setFormErrors] = React.useState({});
+  let {editId} = useParams();
+  const resume = useSelector(state => state.reducer.resume.resumes);
+  const [hover,setHover] = React.useState({});
 
   // intializing form values
-  const initialValues = {fName : "", lName : "", email : "" ,skills : "" , img : "", graduation : "" , school : "" , job : "", employer : "" , job_desc : "", createdBy : number, address : "" , template : "template1"}
+  const initialValues = {fName : "", lName : "", email : "" ,skills : "" , img : "", graduation : "" , school : "" , job : "", employer : "" , job_desc : "", createdBy : number, address : "" , template : "template1" , saveOption : "publish"}
   const [formValues,setFormValues] = React.useState(initialValues);
 
    // handle on change event on input values of form
@@ -74,8 +78,14 @@ export default function ResumeForm() {
   // on create Resume
   const handleSubmit = (event) => {
     event.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);  
+    if(formValues.saveOption=="draft"){
+      dispatch(setResumeValue(formValues));
+      navigate("/homepage");
+    }else{
+      setFormErrors(validate(formValues));
+      setIsSubmit(true);  
+    }
+   
     
   };
 
@@ -86,7 +96,6 @@ export default function ResumeForm() {
       navigate("/homepage");
     }
   },[formErrors])
-
 
   //validation
   
@@ -134,21 +143,45 @@ export default function ResumeForm() {
     
   }
 
+
+  //setting the value for edit option
+
+  React.useEffect(()=>{
+    if(editId!=undefined){
+      const drafts = resume.filter((ele)=>{
+        return (ele.createdBy == number && ele.saveOption=="draft")
+      })
+      setFormValues(drafts.at(editId));
+    }
+  },[])
+
+  React.useEffect(()=>{
+    if(formValues.template=="template1"){
+      setHover({hover1 : "hoverClass"})
+    }
+    else if(formValues.template=="template2"){
+      setHover({hover2 : "hoverClass"})
+    }else{
+      setHover({hover3 : "hoverClass"})
+    }
+  },[formValues.template])
   
 
 
   // material ui form
   return (
     <>
+    <div className="resume_div">
     <div className="go_back_button" onClick={()=>{navigate("/homepage")}}>
       <EnterOutlined />
     </div>
-
-    <img src={tempscreen1} alt="" className='tempScreenShot1'/>
-    <img src={tempscreen2} alt="" className='tempScreenShot2'/>
-    <img src={tempscreen3} alt="" className='tempScreenShot3'/>
-
+    <img src={tempscreen1} alt="" className={`tempScreenShot1 ${hover.hover1}`}/>
+    <img src={tempscreen2} alt="" className={`tempScreenShot2 ${hover.hover2}`}/>
+    <img src={tempscreen3} alt="" className={`tempScreenShot3 ${hover.hover3}`}/>
     <div className="resume_main_div">
+
+
+
     <h1 style={{textAlign:'center', marginBottom : 0}}>Create Resume</h1>
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -343,6 +376,7 @@ export default function ResumeForm() {
               </Grid>
          
             </Grid>
+            <SaveOption state={setFormValues}/>
             </Box>
 
 
@@ -376,6 +410,7 @@ export default function ResumeForm() {
     </ThemeProvider>
     
     
+    </div>
     </div>
     </>
   );

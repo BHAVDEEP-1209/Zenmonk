@@ -33,6 +33,10 @@ function App() {
     {
       path: "/resume",
       element: <ResumeForm />,
+    },
+    {
+      path: "/resume/:editId",
+      element: <ResumeForm />,
     }
   ];
 

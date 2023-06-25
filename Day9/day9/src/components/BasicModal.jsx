@@ -42,7 +42,7 @@ import JsPDF from 'jspdf';
         open={open}
         onOk={() => setOpen(false)}
         onCancel={() => setOpen(false)}
-        width={"45%"}
+        width={"70%"}
         height={"100%"}
         footer={[]}
         
