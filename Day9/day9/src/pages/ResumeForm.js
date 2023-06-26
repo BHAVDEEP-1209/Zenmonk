@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import {setResumeValue} from "../slices/resumeSlice"
+import {deleteItem, setResumeValue} from "../slices/resumeSlice"
 import { useNavigate, useParams,} from 'react-router-dom';
 import BasicModal from '../components/BasicModal';
 import TemplateRadio from '../components/TemplateRadio';
@@ -19,7 +19,7 @@ import tempscreen1 from "../assets/temp1.png"
 import tempscreen2 from "../assets/temp2.png"
 import tempscreen3 from "../assets//temp3.png"
 import SaveOption from '../components/SaveOption';
-
+import { deleteEditedItem } from '../slices/resumeSlice';
 
 const defaultTheme = createTheme();
 
@@ -34,7 +34,7 @@ export default function ResumeForm() {
   const [hover,setHover] = React.useState({});
 
   // intializing form values
-  const initialValues = {fName : "", lName : "", email : "" ,skills : "" , img : "", graduation : "" , school : "" , job : "", employer : "" , job_desc : "", createdBy : number, address : "" , template : "template1" , saveOption : "publish"}
+  const initialValues = {fName : "", lName : "", email : "" ,skills : "" , img : "", graduation : "" , school : "" , job : "", employer : "" , job_desc : "", createdBy : number, address : "" , template : "template1" , saveOption : "publish" , id : ""}
   const [formValues,setFormValues] = React.useState(initialValues);
 
    // handle on change event on input values of form
@@ -78,15 +78,19 @@ export default function ResumeForm() {
   // on create Resume
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(formValues.saveOption=="draft"){
-      dispatch(setResumeValue(formValues));
-      navigate("/homepage");
-    }else{
-      setFormErrors(validate(formValues));
-      setIsSubmit(true);  
-    }
-   
-    
+      setFormValues((prev)=>{
+        return {
+          ...prev,
+          id : Math.floor(Math.random() * 100)
+        }
+      })
+      if(formValues.saveOption=="draft"){
+        dispatch(setResumeValue(formValues));
+        navigate("/homepage");
+      }else{
+        setFormErrors(validate(formValues));
+        setIsSubmit(true);  
+      } 
   };
 
   React.useEffect(()=>{
@@ -152,6 +156,8 @@ export default function ResumeForm() {
         return (ele.createdBy == number && ele.saveOption=="draft")
       })
       setFormValues(drafts.at(editId));
+      dispatch(deleteEditedItem(formValues.id));
+      
     }
   },[])
 

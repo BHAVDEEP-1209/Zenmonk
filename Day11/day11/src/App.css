@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Alkatra&family=Handlee&family=IBM+Plex+Mono&family=Jost&family=Lato&family=Montserrat:wght@400;500&family=Signika&display=swap');
+
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.user_div{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.user_div img{
+  float: left;
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.user_div:hover{
+  /* filter: brightness(120%); */
+  /* background-color: rgb(150, 207, 235); */
+  background-color: #8696FE;
+}
+
+.sender_div{
+  min-height: 100px;
+  /* border: 2px solid black; */
+  display: flex;
+  /* padding-top: 30px; */
+}
+
+.img_div{
+  position: relative;
+  top: 40px;
+}
+
+.img_div img{
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.img_div p{
+  margin-top: 0;
+}
+
+.msg_div{
+  width: 40%;
+  padding:14px 16px ;
+  background-color: #EEEEEE;
+  border-top-right-radius:8px ;
+  border-top-left-radius:8px ;
+  border-bottom-right-radius:8px ;
+  /* font-weight: bold; */
+  margin-bottom: 40px;
+}
+
+.receiver_div{
+  flex-direction: row-reverse;
+}
+
+.receiver_msg_div{
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  margin-right: 10px;
+}

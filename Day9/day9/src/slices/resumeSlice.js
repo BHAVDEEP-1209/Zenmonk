@@ -12,16 +12,22 @@ export const resumeSlice = createSlice({
         state.resumes = action.payload;
     },
     setResumeValue : (state,action)=>{
+      console.log(action.payload);
       state.resumes.push(action.payload);
       
     },
     deleteItem : (state,action)=>{
       state.resumes.splice(action.payload,1);
+    },
+    deleteEditedItem : (state,action)=>{
+      state.resumes = state.resumes.filter((ele)=>{
+        return ele.id != action.payload;
+      })
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setResumeInitialValues , setResumeValue , deleteItem} = resumeSlice.actions
+export const { setResumeInitialValues , setResumeValue , deleteItem , deleteEditedItem} = resumeSlice.actions
 
 export default resumeSlice.reducer

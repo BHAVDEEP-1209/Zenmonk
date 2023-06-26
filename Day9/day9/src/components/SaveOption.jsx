@@ -21,7 +21,7 @@ export default function SaveOption(props) {
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
-        defaultValue="publish"
+        // defaultValue="publish"
         name="row-radio-buttons-group"
       >
         <FormControlLabel value="publish" control={<Radio />} label="Publish" onChange={handleChange}/>
