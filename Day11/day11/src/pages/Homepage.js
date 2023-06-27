@@ -15,9 +15,12 @@ import ReceiverComponent from '../componenets/ReceiverComponent';
 import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
+import MailIcon from '@mui/icons-material/Mail';
+import { useSelector } from 'react-redux';
 
 const Homepage = () => {
     const [styleDiv,setStyleDiv] = useState(false);
+    const userName = useSelector(state=>state.user);
 
     const handleClick=()=>{
         setStyleDiv(!styleDiv);
@@ -75,7 +78,7 @@ const Homepage = () => {
         <div className="content_div">
         <div className="left_div">
             <div className="left_header">
-                <h1>CHAT</h1>
+                <h1>{userName}</h1>
                 <AccountCircleIcon style={{fontSize: "40px"}} className='avatar'/>
                 
             </div>
@@ -96,8 +99,8 @@ const Homepage = () => {
                 }
             </div>
         </div>
-        <div className={`middle_div ${styleDiv && "style_Div"}`} onClick={handleClick}>
-            <div className="middle_header">
+        <div className={`middle_div ${styleDiv && "style_Div"}`} >
+            <div className="middle_header" onClick={handleClick}>
             <CircleIcon style={{color: "green"}}/>
                  <h1>Tom Cruise</h1>
             </div>
@@ -108,6 +111,7 @@ const Homepage = () => {
                 <ReceiverComponent />
                 <SenderComponent />
                 <ReceiverComponent />
+                
             </div>
             <div className="middle_footer">
             
@@ -127,6 +131,8 @@ const Homepage = () => {
             </div>
             <div className="right_footer_div">
                 <h1>Tom Cruise</h1>
+                <MailIcon />
+                <p>bhavdeep@gmail.com</p>
             </div>
 
         </div>
