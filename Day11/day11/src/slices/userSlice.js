@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  user : {
+  currentUser : {
     displayName : "",
     uid : "",
-    img : "",
+    photoURL : "",
     email : ""
   },
   isLoggedIn : false
@@ -15,14 +15,15 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setValue : (state,action)=>{
-        state.user.displayName = action.payload.displayName;
-        state.user.uid = action.payload.uid;
-        state.user.img = action.payload.photoURL;
+      console.log(action.payload.displayName);
+        state.currentUser.displayName = action.payload.displayName;
+        state.currentUser.uid = action.payload.uid;
+        state.currentUser.photoURL = action.payload.photoURL;
         state.isLoggedIn = true;
-        state.user.email = action.payload.email; 
+        state.currentUser.email = action.payload.email; 
     },
     handleLogOut : (state)=>{
-        state.user = "";
+        state.currentUser = {};
         state.isLoggedIn = false;
     }
   },
