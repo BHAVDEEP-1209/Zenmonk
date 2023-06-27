@@ -48,6 +48,9 @@
 .avatar{
     cursor: pointer;
 }
+.messageContainer{
+    /* overflow: scroll; */
+}
 
 .middle_div{
     height: 100%;

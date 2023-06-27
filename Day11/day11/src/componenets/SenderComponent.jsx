@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SenderComponent = () => {
+const SenderComponent = (props) => {
   return (
     <div className='sender_div'>
         <div className="img_div">
@@ -9,7 +9,7 @@ const SenderComponent = () => {
         <p>10.30 AM</p>
         </div>
         <div className="msg_div">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut voluptatum 
+        {props.message.message.text}
         </div>
     </div>
   )

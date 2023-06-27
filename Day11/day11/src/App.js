@@ -7,7 +7,7 @@ import Login from './pages/Login';
 import { useSelector } from 'react-redux';
 
 function App() {
-  const isLoggedIn = useSelector(state=>state.isLoggedIn);
+  const isLoggedIn = useSelector(state=>state.user.isLoggedIn);
   const publicRoutes = [
     {
       path : "/",
