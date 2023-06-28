@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Jost:ital,wght@0,400;0,500;1,400&family=Lato:ital,wght@0,400;0,700;1,700&family=Montserrat:wght@400;500;600&display=swap');
+
 $bgColor : linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 $mainBgColor : linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
 
@@ -7,6 +9,7 @@ $mainBgColor : linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Montserrat', sans-serif;
 
     .container {
         width: 75%;
@@ -53,6 +56,7 @@ $mainBgColor : linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
                     padding: 12px 14px;
                     border: none;
                     border-radius: 5px;
+                    font-family: 'Jost', sans-serif;
                 }
             }
 
