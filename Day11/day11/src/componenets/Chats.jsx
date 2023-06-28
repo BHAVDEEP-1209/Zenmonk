@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { doc, onSnapshot } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, onSnapshot, query, updateDoc, where } from "firebase/firestore";
 import { db } from '../firebase';
 import { useDispatch } from 'react-redux';
 import { setChatValue } from '../slices/chatSlice';
@@ -10,6 +10,7 @@ const Chats = () => {
     const [chats, setChats] = useState([]);
     const currentUser = useSelector(state => state.user.currentUser);
     const dispatch = useDispatch();
+    const chatId = useSelector(state => state.chat.chatId);
 
     useEffect(() => {
         const getChats = () => {
@@ -25,12 +26,12 @@ const Chats = () => {
         currentUser.uid && getChats();
     }, [currentUser.uid])
 
-    const handleSelect=(user)=>{
+    const handleSelect=async(user)=>{
         const combinedId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;
         dispatch(setChatValue({combinedId,user}));
     }
 
-    console.log(Object.entries(chats));
+    // console.log(Object.entries(chats));
     return (
         <div className='chats'>
             {

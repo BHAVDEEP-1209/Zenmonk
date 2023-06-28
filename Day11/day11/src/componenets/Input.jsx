@@ -31,12 +31,13 @@ const Input = () => {
         text,
         senderId: currentUser.uid,
         date: Timestamp.now(),
+        status : false
       })
     })
     const dbRef = doc(db, "userChats", currentUser.uid);
     await updateDoc(dbRef, {
       [chatId + ".lastMessage"]:{
-        text
+        text,
       },
       [chatId+".date"] : serverTimestamp()
     })

@@ -71,7 +71,12 @@ const Messages = () => {
           messages: []
         })
 
-        window.alert("chat cleared!");
+        const dbRef = doc(db, "userChats", currentUser.uid);
+        await updateDoc(dbRef, {
+          [chatId + ".lastMessage"]:{
+            text : ""
+          }
+        })
     }
 
     useEffect(() => {
@@ -112,13 +117,13 @@ const Messages = () => {
     }
 }, [dbRef]);
 
-console.log(currentUser.uid);
-console.log(otherId);
   
     return (
         <>
-        <button onClick={clearChat}>clear chat</button>
-        <div className='messages'>
+        <div className={`messages ${chatUser?.uid==undefined && "fullHeight"}`} >
+            {
+                chatUser?.uid!=undefined && <button onClick={clearChat} className='clearChatButton'>clear chat</button>
+            }
             {
                 messages?.map((m,i)=>{
                     return <Message message={m} key={m.id} index={i}/>

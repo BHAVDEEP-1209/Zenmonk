@@ -5,6 +5,7 @@ import { handleLogOut } from '../slices/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { doc, updateDoc } from "firebase/firestore";
+import { handleChatLogOut } from '../slices/chatSlice'
 
 const Navbar = () => {
     const dispatch = useDispatch();
@@ -13,12 +14,13 @@ const Navbar = () => {
     const id = user.uid;
 
     const handleSignOut = async()=>{
-        signOut(auth);
+        // signOut(auth);
+        
         dispatch(handleLogOut());
+        dispatch(handleChatLogOut());
         await updateDoc(doc(db, "users", id), {
           status : "offline"
         });
-        
         navigate("/");
     }
   return (

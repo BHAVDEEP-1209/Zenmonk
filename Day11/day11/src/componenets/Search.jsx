@@ -26,7 +26,7 @@ const Search = () => {
 
     const handleSelect = async() => {
         const combinedId = currentUser.uid > user?.uid ? currentUser.uid + user?.uid : user?.uid + currentUser.uid;
-        console.log("user clicked!")
+        
         try {
             const docRef = doc(db, "chats", combinedId);
             const res = await getDoc(docRef);

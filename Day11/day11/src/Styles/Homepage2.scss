@@ -164,17 +164,43 @@ $mainBgColor : linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
 
             span {
                 font-size: 20px;
+                margin-left: 5px;
+            }
+
+            p{
+                font-size: 15px;
+                color: rgb(19, 133, 220);
+                font-weight: 500;
+                letter-spacing: 4px;
+                margin: 0;
+                margin-left: 20px;
             }
         }
+        
 
         .messages {
             background-image: url("https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg");
             padding: 10px;
             height: calc(100% - 170px);
             overflow: scroll;
+            position: relative;
 
             &::-webkit-scrollbar {
                 display: none;
+            }
+
+            .clearChatButton{
+                position: absolute;
+                right: 20px;
+                top: 10px;
+                padding: 10px 12px;
+                font-size: 14px;
+                font-family: 'Montserrat', sans-serif;
+                background-image: $bgColor;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                z-index: 1;
             }
 
             .message {
@@ -218,6 +244,10 @@ $mainBgColor : linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
                     }
                 }
             }
+        }
+
+        .fullHeight{
+            height: 100%;
         }
 
         .input {
@@ -271,4 +301,5 @@ $mainBgColor : linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
         }
     }
 }
+
 

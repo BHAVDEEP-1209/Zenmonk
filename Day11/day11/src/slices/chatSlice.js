@@ -13,10 +13,14 @@ export const chatSlice = createSlice({
     setChatValue : (state,action)=>{
         state.chatUser = action.payload.user;
         state.chatId = action.payload.combinedId;
-    },  
+    },
+    handleChatLogOut : (state)=>{
+      state.chatId = "";
+      state.chatUser = {};
+    }  
   },
 })
 
-export const {setChatValue} = chatSlice.actions
+export const {setChatValue , handleChatLogOut} = chatSlice.actions
 
 export default chatSlice.reducer

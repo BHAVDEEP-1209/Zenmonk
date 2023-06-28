@@ -38,13 +38,21 @@ const Chat = () => {
     <div className='chat'>
       <div className="chatInfo">
       {
-        chatUser?.uid!=undefined && <CircleIcon className={`${status=="online" ? "chatIcon" : "chatIcon2"}`} />
+        chatUser?.uid!=undefined && <div>
+        <CircleIcon className={`${status=="online" ? "chatIcon" : "chatIcon2"}`} />
+        <span>{chatUser.displayName}</span>
+        <p className='status'>{status}</p>
+        </div>
       }
-        <span>{chatUser?.displayName}</span>
-        <p>{status}</p>
+      {
+        chatUser?.uid == undefined && <span>Hello User!</span>
+      }
+        
       </div>
       <Messages />
-      <Input />
+      {
+        chatUser?.uid!=undefined && <Input />
+      }
     </div>
   )
 }
