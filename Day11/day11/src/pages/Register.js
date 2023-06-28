@@ -23,30 +23,30 @@ const Register = () => {
     try {
       const result = await createUserWithEmailAndPassword(auth, email, password);
       navigate("/");
-      const storageRef = ref(storage, "../assets/johnny.jfif");
-      const uploadTask = uploadBytesResumable(storageRef, file);
+      // const storageRef = ref(storage, "../assets/johnny.jfif");
+      // const uploadTask = uploadBytesResumable(storageRef, file);
 
-      uploadTask.on(
+      // uploadTask.on(
 
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async(downloadURL) => {
-            await updateProfile(result.user,{
-              displayName,
-              photoURL : downloadURL,
-            });
-            await setDoc(doc(db, "users", result.user.uid), {
-              uid : result.user.uid,
-              displayName,
-              email,
-              photoURL : downloadURL,
-            });
-            await setDoc(doc(db,"userChats",result.user.uid),{});
-          });
-        }
-      );
+      //   (error) => {
+      //     console.log(error);
+      //   },
+      //   () => {
+      //     getDownloadURL(uploadTask.snapshot.ref).then(async(downloadURL) => {
+          
+      //     });
+      //   }
+      // );
+      await updateProfile(result.user,{
+        displayName,
+      });
+      await setDoc(doc(db, "users", result.user.uid), {
+        uid : result.user.uid,
+        displayName,
+        email,
+        status : "offline"
+      });
+      await setDoc(doc(db,"userChats",result.user.uid),{});
     } catch (error) {
       console.log(error);
     }

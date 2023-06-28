@@ -4,6 +4,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db } from '../firebase';
 import { useDispatch } from 'react-redux';
 import { setChatValue } from '../slices/chatSlice';
+import CircleIcon from "@mui/icons-material/Circle";
 
 const Chats = () => {
     const [chats, setChats] = useState([]);
@@ -39,6 +40,7 @@ const Chats = () => {
                         <img src="https://images.unsplash.com/photo-1674574124649-778f9afc0e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
                         <div className="userChatInfo">
                             <span>{chat[1]?.userInfo.displayName}</span>
+                            {/* <CircleIcon className='statusIcon'/> */}
                             <p>{chat[1].lastMessage?.text}</p>
                         </div>
                     </div>

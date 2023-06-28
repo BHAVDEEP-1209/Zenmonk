@@ -2,12 +2,13 @@ import React from "react";
 import "../Styles/Login.scss";
 // import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { signInWithEmailAndPassword , signInWithPopup} from "firebase/auth";
-import { auth, provider } from "../firebase";
+import { auth, db, provider } from "../firebase";
 import { setValue } from "../slices/userSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import GoogleButton from "react-google-button";
+import { doc, updateDoc } from "firebase/firestore";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,9 @@ const Login = () => {
     try{
       const response = await signInWithPopup(auth,provider);
       dispatch(setValue(response.user));
+      await updateDoc(doc(db, "users", response.user.uid), {
+        status : "online"
+      });
       navigate("/homepage");
     }catch(err){  
       console.log(err);
@@ -30,6 +34,9 @@ const Login = () => {
 
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
+      await updateDoc(doc(db, "users", result.user.uid), {
+        status : "online"
+      });
       dispatch(setValue(result.user));
       navigate("/homepage");
     } catch (err) {

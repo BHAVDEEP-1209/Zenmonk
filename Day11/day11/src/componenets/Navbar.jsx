@@ -1,19 +1,24 @@
 import React from 'react'
 import { signOut } from 'firebase/auth'
-import { auth } from '../firebase'
+import { auth, db } from '../firebase'
 import { handleLogOut } from '../slices/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { doc, updateDoc } from "firebase/firestore";
 
 const Navbar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector(state=>state.user.currentUser);
-    console.log(user);
+    const id = user.uid;
 
-    const handleSignOut = ()=>{
+    const handleSignOut = async()=>{
         signOut(auth);
         dispatch(handleLogOut());
+        await updateDoc(doc(db, "users", id), {
+          status : "offline"
+        });
+        
         navigate("/");
     }
   return (
